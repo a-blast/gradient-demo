@@ -55,11 +55,20 @@ export default function App() {
     >
       <svg style={{ position: "absolute", width: 0, height: 0 }}>
         <filter id="goo">
-          <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="4" />
+          <feGaussianBlur
+            in="SourceGraphic"
+            result="blur"
+            stdDeviation="40"
+            edgeMode="wrap"
+          />
           <feColorMatrix
             in="blur"
-            values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 30 -7"
-          />{" "}
+            values="
+              1 0 0 1 0 
+              0 1 0 0 0 
+              0 0 1 0 0 
+              0 0 0 30 -7"
+          />
         </filter>
       </svg>
       <Gradient
@@ -69,7 +78,7 @@ export default function App() {
             (x, y, width, height) =>
               //`radial-gradient(${r}deg, rgba(76, 200, 255, 0.8) 9.05%, rgba(242, 71, 255, 0.8) 88.66%)`
               `radial-gradient( ${width}% ${height}% at top ${y}% left ${x}%, rgba(76, 200, 255, 0.5) 0%, transparent),
-              radial-gradient( ${width}% ${height}% at top ${y}% right ${x}%, rgba(242, 71, 255, 0.6) 0%, transparent)`
+              radial-gradient( ${width}% ${height}% at top ${y}% right ${x}%, rgba(242, 71, 255, 0.5) 0%, transparent)`
           )
         }}
       />
