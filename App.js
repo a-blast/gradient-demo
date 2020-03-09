@@ -21,7 +21,7 @@ const Gradient = styled(animated.div)`
   //top: 55%;
   bottom: -34.11%;
   //background-blend-mode: screen;
-  filter: blur(2px);
+  //filter: blur(2px);
   will-change: background;
 `;
 
@@ -50,15 +50,15 @@ export default function App() {
       <Gradient
         ref={ref}
         style={{
-          background: xy.to(
-            xy =>
+          background: xy.interpolate(
+            ([x, y]) =>
               //`radial-gradient(${r}deg, rgba(76, 200, 255, 0.8) 9.05%, rgba(242, 71, 255, 0.8) 88.66%)`
-              `radial-gradient( 80% 100% at bottom 0% left 10%, rgba(76, 200, 255, 0.5) 10%, transparent),
+              `radial-gradient( 80% 100% at bottom ${x}% left ${y}%, rgba(76, 200, 255, 0.5) 10%, transparent),
               radial-gradient(80% 100% at bottom 0% right 10%, rgba(242, 71, 255, 0.7) 10%, transparent)`
           )
         }}
       />
-      <animated.span>{xy.getValue()}</animated.span>
+      <animated.span>{xy.to(([x, y]) => `${x},${y}`)}</animated.span>
     </div>
   );
 }
